@@ -1,11 +1,9 @@
 const loveMe = document.querySelector(".loveMe");
 const times = document.querySelector("#times");
 
-let clickTime = 0;
+let timesClicked = 0;
 
-loveMe.addEventListener("dblclick", (e) => {
-  createHeart(e);
-});
+loveMe.addEventListener("dblclick", (e) => createHeart(e));
 
 const createHeart = (e) => {
   const heart = document.createElement("i");
@@ -21,5 +19,11 @@ const createHeart = (e) => {
   const xInside = x - leftOffset;
   const yInside = y - topOffset;
 
-  console.log(xInside, yInside);
+  heart.style.top = `${yInside}px`;
+  heart.style.left = `${xInside}px`;
+  loveMe.appendChild(heart);
+
+  times.textContent = ++timesClicked;
+
+  setTimeout(() => heart.remove(), 1000);
 };
